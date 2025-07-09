@@ -1,0 +1,276 @@
+/* ==== VARIÁVEIS DE COR - light/dark mode ==== */
+:root {
+  --bg: #ffffff;
+  --text-color: #000000;
+  --primary-color: #0077ff;
+  --card-bg: rgba(0, 119, 255, 0.12);
+}
+
+body.dark {
+  --bg: #121212;
+  --text-color: #f0f0f0;
+  --card-bg: rgba(236, 226, 226, 0.05);
+}
+
+/* ==== RESET E ESTILOS BASE ==== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg);
+  color: var(--text-color);
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* HEADER FIXO */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 119, 255, 0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.1);
+  z-index: 1000;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.menu {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu a:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+#toggle-theme {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  font-size: 1rem;
+  padding: 0.4rem 0.6rem;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#toggle-theme:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+/* CONTEÚDO PRINCIPAL */
+main, section {
+  max-width: 900px;
+  margin: 140px auto 40px; /* margem superior pra descer do header fixo */
+  padding: 1.5rem;
+  background-color: var(--card-bg);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgb(0 0 0 / 0.08);
+  backdrop-filter: blur(10px);
+  transition: background-color 0.5s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Remove borda no dark mode */
+body.dark main, body.dark section {
+  border: none;
+}
+
+/* Títulos */
+h1, h2, h3 {
+  color: var(--primary-color);
+  margin-top: 0;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(0, 119, 255, 0.05);
+  color: var(--primary-color);
+  font-weight: 500;
+  font-size: 1rem;
+  margin-top: auto;
+}
+
+/* IMAGENS DE PERFIL E LOGO */
+.logo, .foto-perfil {
+  display: block;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.logo {
+  width: 180px;
+  height: auto;
+}
+
+.foto-perfil {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  object-position: center 60%;
+}
+
+.foto-perfil:hover, .logo:hover {
+  transform: scale(1.05);
+}
+
+/* SEÇÃO DE PERFIS EM COLUNAS */
+.descricao-dupla {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.perfil {
+  flex: 1;
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgb(0 0 0 / 0.05);
+}
+
+/* LISTAS */
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  color: #0055aa;
+  font-weight: 500;
+}
+
+ul li {
+  margin-bottom: 0.7rem;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+ul li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+/* ======== MEDIA QUERY PARA MOBILE ======== */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+  }
+
+  .menu {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .menu a {
+    font-size: 1.2rem;
+    padding: 0.8rem 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  main, section {
+    margin: 120px 1rem 40px;
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .descricao-dupla {
+    flex-direction: column;
+  }
+
+  .perfil {
+    width: 100%;
+  }
+
+  .logo {
+    width: 140px;
+  }
+
+  .foto-perfil {
+    width: 140px;
+    height: 140px;
+  }
+
+  h1, h2, h3 {
+    font-size: 1.5rem;
+  }
+
+  p, ul li {
+    font-size: 1rem;
+  }
+
+  footer {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* === NOVO: LAYOUT HORIZONTAL PARA AS SEÇÕES PRINCIPAIS === */
+.horizontal-layout {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 140px auto 40px;
+}
+
+.horizontal-layout > section,
+.horizontal-layout > div {
+  flex: 1 1 300px;
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgb(0 0 0 / 0.08);
+  margin: 0; /* evita margens extras */
+}
+
+@media (max-width: 768px) {
+  .horizontal-layout {
+    flex-direction: column;
+    margin: 100px 1rem 40px;
+  }
+
+  .horizontal-layout > section,
+  .horizontal-layout > div {
+    flex: 1 1 100%;
+    margin-bottom: 1.5rem;
+  }
+}
